@@ -1,6 +1,7 @@
 <div class="header">
-  <app-search-input></app-search-input>
+  <app-search-input (onshowSettings)="toggleSettings = !toggleSettings"></app-search-input>
   <app-authentication></app-authentication>
 </div>
-<app-filters></app-filters>
+<app-filters *ngIf="toggleSettings"></app-filters>
+<app-search-item></app-search-item>
 

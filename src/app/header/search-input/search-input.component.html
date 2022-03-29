@@ -8,5 +8,5 @@
     <input type="text" name="search" class="search-input" placeholder="What are you want to find out?">
     <input type="button" class="search-button" value="search">
   </div>
-  <div class="settings-button" [ngStyle]="{'background-image': 'url(' + settings + ')'}" ></div>
+  <div class="settings-button" [ngStyle]="{'background-image': 'url(' + settings + ')'}" (click)="showSettings()"></div>
 </div>

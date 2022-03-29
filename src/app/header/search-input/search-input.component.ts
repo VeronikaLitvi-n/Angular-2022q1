@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter  } from '@angular/core';
 
 @Component({
   selector: 'app-search-input',
@@ -12,5 +12,10 @@ export class SearchInputComponent {
 
   settings = './assets/search_settings.svg';
 
+  @Output() onshowSettings = new EventEmitter<boolean>();
+
+  showSettings() {
+    this.onshowSettings.emit(true);
+  }
 }
 
