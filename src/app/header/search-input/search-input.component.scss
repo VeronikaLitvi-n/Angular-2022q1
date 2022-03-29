@@ -1,0 +1,55 @@
+@mixin font(
+  $font-name,
+  $font-size,
+  $font-color,
+  $font-line,
+  $font-weight,
+) {
+  font-family: $font-name;
+  font-size: $font-size;
+  color: $font-color;
+  line-height: $font-line;
+  font-weight: $font-weight;
+}
+$blue: #2F80ED;
+$white: #ffffff;
+
+.search-container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  .logo {
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+  }
+  .settings-button {
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+  }
+  div {
+    padding-right: 10px;
+  }
+  .search-input {
+    width: 400px;
+    height: 25px;
+    border: 0px;
+    background-color: #EFEFEF;
+    padding: 0px;
+    @include font('Roboto', 12px, #929292, 150%, 400px);
+  }
+  .search-button {
+    width: 80px;
+    height: 25px;
+    background-color: $blue;
+    @include font('Roboto', 12px, $white, 150%, 400px);
+    padding: 0px;
+    border-radius: 0px 5px 5px 0px;
+    border: 0px;
+  }
+  .settings-button {
+    height: 32px;
+}
+}
