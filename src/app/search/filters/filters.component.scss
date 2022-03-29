@@ -1,0 +1,45 @@
+@mixin font(
+  $font-name,
+  $font-size,
+  $font-color,
+  $font-line,
+  $font-weight,
+) {
+  font-family: $font-name;
+  font-size: $font-size;
+  color: $font-color;
+  line-height: $font-line;
+  font-weight: $font-weight;
+}
+$blue: #2F80ED;
+$light_gray: #E5E5E5;
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $light_gray;
+  margin-top: 30px;
+}
+.filters-title {
+  @include font('Roboto', 12px, #929292, 150%, 400px)
+}
+.filters-date,
+.filters-count,
+.filters-word {
+  @include font('Roboto', 12px, $blue, 150%, 400px);
+  padding: 15px;
+}
+select{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  outline: none;
+  padding: 5px;
+  padding-right: 40px;
+  }
+  .input-word {
+    border: 0px;
+  }
