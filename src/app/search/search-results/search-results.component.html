@@ -1,1 +1,13 @@
-<p>search-results works!</p>
+<div class="search-result" *ngFor="let item of responseFragment.items" >
+<app-search-item [itemWidth]="item.snippet.thumbnails.medium.width"
+[imageURL]="item.snippet.thumbnails.medium.url"
+[viewedCount]="item.statistics.viewCount"
+[likedCount]="item.statistics.likeCount"
+[dislikeCount]="item.statistics.dislikeCount"
+[commentsCount]="item.statistics.commentCount"
+[itemTitle]="item.snippet.title"
+[published]="item.snippet.publishedAt"
+>
+</app-search-item>
+</div>
+

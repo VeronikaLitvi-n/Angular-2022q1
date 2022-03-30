@@ -7,6 +7,7 @@ import { SearchItemComponent } from './search/search-item/search-item.component'
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchInputComponent } from './header/search-input/search-input.component';
 import { AuthenticationComponent } from './header/authentication/authentication.component';
+import { AddColorDirective } from './search/search-item/add-color.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AuthenticationComponent } from './header/authentication/authentication.
     SearchResultsComponent,
     SearchInputComponent,
     AuthenticationComponent,
+    AddColorDirective,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

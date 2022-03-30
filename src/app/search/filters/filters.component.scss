@@ -19,7 +19,6 @@ $light_gray: #E5E5E5;
   align-items: center;
   justify-content: center;
   background-color: $light_gray;
-  margin-top: 30px;
 }
 .filters-title {
   @include font('Roboto', 12px, #929292, 150%, 400px)

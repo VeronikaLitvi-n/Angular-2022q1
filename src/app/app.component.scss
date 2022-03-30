@@ -10,4 +10,10 @@ app-search-input {
 app-authentication {
   padding-right: 30px;
 }
+app-search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 30px;
+}
 

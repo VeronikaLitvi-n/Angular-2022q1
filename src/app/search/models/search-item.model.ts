@@ -21,11 +21,13 @@ export interface ISearchItem {
     channelId: string;
     title: string;
     description: string;
-    thumbnails: ISearchItemFragmentThumbnails;
-    medium: ISearchItemFragmentThumbnails;
-    high: ISearchItemFragmentThumbnails;
-    standard: ISearchItemFragmentThumbnails;
-    maxres: ISearchItemFragmentThumbnails;
+    thumbnails: {
+      default: ISearchItemFragmentThumbnails;
+      medium: ISearchItemFragmentThumbnails;
+      high: ISearchItemFragmentThumbnails;
+      standard: ISearchItemFragmentThumbnails;
+      maxres: ISearchItemFragmentThumbnails;
+    }
     channelTitle: string;
     tags: string[];
     categoryId: string;
