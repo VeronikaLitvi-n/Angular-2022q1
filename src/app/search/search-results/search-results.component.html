@@ -1,4 +1,4 @@
-<div class="search-result" *ngFor="let item of responseFragment.items" >
+<div class="search-result" *ngFor="let item of searchItems" >
 <app-search-item [itemWidth]="item.snippet.thumbnails.medium.width"
 [imageURL]="item.snippet.thumbnails.medium.url"
 [viewedCount]="item.statistics.viewCount"
