@@ -17,11 +17,8 @@ import { AuthenticationComponent } from './header/authentication/authentication.
     SearchInputComponent,
     AuthenticationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
