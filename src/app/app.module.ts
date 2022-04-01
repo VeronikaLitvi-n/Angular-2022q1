@@ -9,7 +9,10 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 import { SearchInputComponent } from './header/search-input/search-input.component';
 import { AuthenticationComponent } from './header/authentication/authentication.component';
 import { AddColorDirective } from './search/search-item/add-color.directive';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalWindowComponent } from './header/modal-window/modal-window.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { ModalLoginComponent } from './header/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,22 @@ import { AddColorDirective } from './search/search-item/add-color.directive';
     SearchInputComponent,
     AuthenticationComponent,
     AddColorDirective,
+    ModalWindowComponent,
+    ModalLoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

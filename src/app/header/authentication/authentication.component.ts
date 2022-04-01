@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-authentication',
@@ -7,6 +10,16 @@ import { Component } from '@angular/core';
 })
 
 export class AuthenticationComponent {
-
   login = './assets/login.svg';
+
+
+  constructor(public dialog: MatDialog) {}
+
+  openRegisterDialog() {
+    let dialog = this.dialog.open(ModalWindowComponent);
+    dialog.afterClosed().subscribe(() => {
+
+    });
+  }
+
 }
