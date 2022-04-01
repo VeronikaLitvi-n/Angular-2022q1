@@ -1,4 +1,5 @@
-import { OnInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import type { OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appAddColor]',

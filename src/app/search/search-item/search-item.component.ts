@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 @Component({
   selector: 'app-search-item',
   templateUrl: './search-item.component.html',
   styleUrls: ['./search-item.component.scss'],
 })
-export class SearchItemComponent implements OnInit {
+export class SearchItemComponent {
   @Input() itemWidth: number = 0;
 
   @Input() imageURL: string = '';
@@ -21,10 +22,4 @@ export class SearchItemComponent implements OnInit {
 
   @Input() published: string = '';
 
-
-  constructor() {
-
-  }
-
-  ngOnInit(): void {}
 }

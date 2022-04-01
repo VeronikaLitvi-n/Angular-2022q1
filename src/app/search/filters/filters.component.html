@@ -1,15 +1,20 @@
 <div class="filters">
   <p class="filters-title">Sorting by: </p>
-  <select class="filters-date" name="date">
+
+  <select class="filters-date" [(ngModel)]="selectedDateSortValue" name="dateSort" (change)="dateSortChange()">
     <option value="">date</option>
-    <option value="date-increase">date &#8593;</option>
-    <option value="dae-decrease">date &#8595;</option>
+    <option [ngValue]="dateSort.value" *ngFor="let dateSort of dateSortValues">
+      {{ dateSort.name }}
+    </option>
   </select>
-  <select class="filters-count" name="date">
-    <option value="">count of view</option>
-    <option value="count-increase">count of view &#8593;</option>
-    <option value="count-decrease">count of view &#8595;</option>
+
+  <select class="filters-count" [(ngModel)]="selectedCountSortValue" name="countSort" (change)="countSortChange()">
+    <option value="">count of views</option>
+    <option [ngValue]="countSort.value" *ngFor="let countSort of countSortValues">
+      {{ countSort.name }}
+    </option>
   </select>
+
   <p class="filters-word">by word or sentence</p>
-  <input class="input-word" type="text">
+  <input class="input-word" type="text" [(ngModel)]="inputTagSort" (change)="tagInputChange()">
 </div>

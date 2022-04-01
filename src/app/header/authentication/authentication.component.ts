@@ -6,12 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./authentication.component.scss'],
 })
 
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent {
 
   login = './assets/login.svg';
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
