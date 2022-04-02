@@ -21,5 +21,4 @@ export class SearchItemComponent {
   @Input() itemTitle: string = '';
 
   @Input() published: string = '';
-
 }

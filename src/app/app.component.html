@@ -1,11 +1,7 @@
 <div class="header">
-  <app-search-input (onshowSettings)="toggleSettings = !toggleSettings"></app-search-input>
+  <app-search-input
+    (onshowSettings)="toggleSettings = !toggleSettings"></app-search-input>
   <app-authentication></app-authentication>
 </div>
 <app-filters *ngIf="toggleSettings"></app-filters>
-<<<<<<< HEAD
-<app-search-item></app-search-item>
-
-=======
 <app-search-results></app-search-results>
->>>>>>> feat: add item-results

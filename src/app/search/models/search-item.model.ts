@@ -27,7 +27,7 @@ export interface ISearchItem {
       high: ISearchItemFragmentThumbnails;
       standard: ISearchItemFragmentThumbnails;
       maxres: ISearchItemFragmentThumbnails;
-    }
+    };
     channelTitle: string;
     tags: string[];
     categoryId: string;
