@@ -19,11 +19,9 @@ export class SearchInputComponent {
     this.onshowSettings.emit(true);
   }
 
-  constructor(private readonly searchService: SearchService) {
-  }
+  constructor(private readonly searchService: SearchService) {}
 
   public setSearchText(): void {
     this.searchService.changeSearch(this.inputSearch);
   }
 }
-

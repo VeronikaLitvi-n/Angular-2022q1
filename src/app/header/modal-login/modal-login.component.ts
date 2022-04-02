@@ -8,9 +8,10 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
   styleUrls: ['./modal-login.component.scss'],
 })
 export class ModalLoginComponent {
-  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ModalLoginComponent>) {
-
-  }
+  constructor(
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ModalLoginComponent>
+  ) {}
 
   closeWindow() {
     this.dialogRef.close();

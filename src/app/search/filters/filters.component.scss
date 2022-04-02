@@ -16,9 +16,10 @@ $light_gray: #E5E5E5;
 
 .filters {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   background-color: $light_gray;
+
 }
 .filters-title {
   @include font('Roboto', 12px, #929292, 150%, 400px)
@@ -29,7 +30,7 @@ $light_gray: #E5E5E5;
   @include font('Roboto', 12px, $blue, 150%, 400px);
   padding: 15px;
 }
-select{
+.filters-select{
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
@@ -42,3 +43,5 @@ select{
   .input-word {
     border: 0px;
   }
+
+

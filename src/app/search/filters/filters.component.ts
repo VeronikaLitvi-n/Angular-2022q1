@@ -6,10 +6,8 @@ import { SortService } from '../../services/sort.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-
 export class FiltersComponent {
-  constructor(private readonly sortService: SortService) {
-  }
+  constructor(private readonly sortService: SortService) {}
 
   dateSortValues: Array<{ name: string; value: string }> = [
     { name: 'date (new first)', value: 'date-increase' },
@@ -42,13 +40,19 @@ export class FiltersComponent {
   }
 
   buildSortParams() {
-    let sortData: { sortType: string, tagInput: string } = { sortType: '', tagInput: '' };
+    let sortData: { sortType: string; tagInput: string } = {
+      sortType: '',
+      tagInput: '',
+    };
     let sortType = '';
-    if ( this.selectedDateSortValue === '' && this.selectedCountSortValue === '') {
+    if (
+      this.selectedDateSortValue === '' &&
+      this.selectedCountSortValue === ''
+    ) {
       sortType = '';
-    } else if ( this.selectedDateSortValue === '' ) {
+    } else if (this.selectedDateSortValue === '') {
       sortType = this.selectedCountSortValue;
-    } else if ( this.selectedCountSortValue === '' ) {
+    } else if (this.selectedCountSortValue === '') {
       sortType = this.selectedDateSortValue;
     }
     sortData.sortType = sortType;

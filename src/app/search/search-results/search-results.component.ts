@@ -11,7 +11,6 @@ import { SortService } from '../../services/sort.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-
 export class SearchResultsComponent implements OnInit {
   responseFragment: ISearchItemsFragment;
 
@@ -32,26 +31,26 @@ export class SearchResultsComponent implements OnInit {
 
   private readonly compareViewCount = (
     a: ISearchItem,
-    b: ISearchItem,
+    b: ISearchItem
   ): number => {
     return +a.statistics.viewCount - +b.statistics.viewCount;
   };
 
   constructor(
     private readonly searchService: SearchService,
-    private readonly sortService: SortService,
+    private readonly sortService: SortService
   ) {
     this.responseFragment = response as ISearchItemsFragment;
     this.searchItems = this.responseFragment.items;
   }
 
   ngOnInit(): void {
-    this.searchService.searchText$.subscribe((searchText) => {
+    this.searchService.searchText$.subscribe(searchText => {
       this.searchFieldValue = searchText;
       this.updateResults();
     });
 
-    this.sortService.sortData$.subscribe((sortParams) => {
+    this.sortService.sortData$.subscribe(sortParams => {
       this.sortParams = sortParams;
       this.updateResults();
     });
@@ -62,8 +61,8 @@ export class SearchResultsComponent implements OnInit {
     let updatedItems: ISearchItem[] = this.responseFragment.items;
 
     if (lowerCaseTrimmedText.length > 0) {
-      updatedItems = updatedItems.filter((item) =>
-        item.snippet.title.toLowerCase().includes(lowerCaseTrimmedText),
+      updatedItems = updatedItems.filter(item =>
+        item.snippet.title.toLowerCase().includes(lowerCaseTrimmedText)
       );
     }
 
@@ -71,8 +70,8 @@ export class SearchResultsComponent implements OnInit {
     let searchType = this.sortParams.sortType;
 
     if (trimmedTag.length > 0) {
-      updatedItems = updatedItems.filter((item) =>
-        item.snippet.tags.includes(trimmedTag),
+      updatedItems = updatedItems.filter(item =>
+        item.snippet.tags.includes(trimmedTag)
       );
     }
 
@@ -89,4 +88,3 @@ export class SearchResultsComponent implements OnInit {
     this.searchItems = updatedItems;
   }
 }
-

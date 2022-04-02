@@ -24,6 +24,10 @@ export class AddColorDirective implements OnInit {
     } else if (diffDays > 180) {
       lineColor = '#fa5f5f';
     }
-    this.renderer.setStyle(this.elementRef.nativeElement, 'backgroundColor', lineColor);
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'backgroundColor',
+      lineColor
+    );
   }
 }
