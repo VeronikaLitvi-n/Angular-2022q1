@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { FiltersComponent } from './search/filters/filters.component';
-import { SearchItemComponent } from './search/search-item/search-item.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
-import { SearchInputComponent } from './header/search-input/search-input.component';
-import { AuthenticationComponent } from './header/authentication/authentication.component';
-import { AddColorDirective } from './search/search-item/add-color.directive';
+import { FiltersComponent } from './youtube/components/filters/filters.component';
+import { SearchItemComponent } from './youtube/components/search-item/search-item.component';
+import { SearchResultsComponent } from './youtube/components/search-results/search-results.component';
+import { SearchInputComponent } from './core/header/componens/search-input/search-input.component';
+import { AuthenticationComponent } from './auth/components/authentication/authentication.component';
+import { AddColorDirective } from './youtube/directives/add-color.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalWindowComponent } from './header/modal-window/modal-window.component';
+import { ModalWindowComponent } from './auth/components/modal-registration/modal-window.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ModalLoginComponent } from './header/modal-login/modal-login.component';
+import { ModalLoginComponent } from './auth/components/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [

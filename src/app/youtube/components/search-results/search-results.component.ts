@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import type { OnInit } from '@angular/core';
-import { ISearchItemsFragment } from '../models/search-responce.model';
-import { ISearchItem } from '../models/search-item.model';
-import response from '../../../response.json';
+import { ISearchItemsFragment } from '../../models/search-responce.model';
+import { ISearchItem } from '../../models/search-item.model';
+import response from '../../../../response.json';
 import { SearchService } from '../../services/search.service';
 import { SortService } from '../../services/sort.service';
 
