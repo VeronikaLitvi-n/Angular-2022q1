@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalWindowComponent } from '../modal-registration/modal-window.component';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -10,10 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class AuthenticationComponent {
   login = './assets/login.svg';
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private router: Router) {}
 
-  openRegisterDialog() {
-    let dialog = this.dialog.open(ModalWindowComponent);
-    dialog.afterClosed().subscribe(() => {});
+  goToRegisterPage() {
+    this.router.navigate(['registration']);
   }
 }

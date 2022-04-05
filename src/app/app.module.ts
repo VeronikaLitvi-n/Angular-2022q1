@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalWindowComponent } from './auth/components/modal-registration/modal-window.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ModalLoginComponent } from './auth/components/modal-login/modal-login.component';
+import { NotFoundPageComponent } from './youtube/components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalLoginComponent } from './auth/components/modal-login/modal-login.c
     AddColorDirective,
     ModalWindowComponent,
     ModalLoginComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
