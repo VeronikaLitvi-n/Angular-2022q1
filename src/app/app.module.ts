@@ -14,6 +14,7 @@ import { ModalWindowComponent } from './auth/components/modal-registration/modal
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ModalLoginComponent } from './auth/components/modal-login/modal-login.component';
 import { NotFoundPageComponent } from './youtube/components/not-found-page/not-found-page.component';
+import { DetailsPageComponent } from './youtube/components/details-page/details-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotFoundPageComponent } from './youtube/components/not-found-page/not-f
     ModalWindowComponent,
     ModalLoginComponent,
     NotFoundPageComponent,
+    DetailsPageComponent,
   ],
   imports: [
     BrowserModule,

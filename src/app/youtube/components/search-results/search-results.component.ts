@@ -5,6 +5,7 @@ import { ISearchItem } from '../../models/search-item.model';
 import response from '../../../../response.json';
 import { SearchService } from '../../services/search.service';
 import { SortService } from '../../services/sort.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-results',
@@ -38,7 +39,9 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private readonly searchService: SearchService,
-    private readonly sortService: SortService
+    private readonly sortService: SortService,
+    private router: Router,
+    public route: ActivatedRoute
   ) {
     this.responseFragment = response as ISearchItemsFragment;
     this.searchItems = this.responseFragment.items;

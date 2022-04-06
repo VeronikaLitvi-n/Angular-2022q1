@@ -24,6 +24,7 @@
     "@angular/router": "~13.3.0",
     "@muicss/angular": "^0.0.4",
     "add": "^2.0.6",
+    "ng2-cookies": "^1.0.12",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
