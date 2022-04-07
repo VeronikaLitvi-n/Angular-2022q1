@@ -12,6 +12,6 @@ export class AuthenticationComponent {
   constructor(private router: Router) {}
 
   goToRegisterPage() {
-    this.router.navigate(['registration']);
+    this.router.navigate(['/auth/registration']);
   }
 }

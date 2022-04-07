@@ -1,0 +1,23 @@
+<div class="register">
+  <h1 class="header-form">Registration</h1>
+  <form class="form-registration" id="id1">
+    <input type="text" required />
+    <p>First Name</p>
+    <input type="text" required />
+    <p>Last Name</p>
+    <input type="email" required />
+    <p>email</p>
+    <input type="password" required />
+    <p>password</p>
+    <button class="button-form" type="submit" (submit)="register()">
+      Register
+    </button>
+    <a
+      [routerLink]="['/auth/login']"
+      routerLinkActive="router-link-active"
+      type="button"
+      class="button-form"
+      >Login</a
+    >
+  </form>
+</div>

@@ -1,4 +1,6 @@
-.login {
+.register {
+  margin: 0 auto;
+  margin-top: 30px;
   width: 35vw;
   height: 40vh;
   background-color: #E5E5E5;
@@ -14,12 +16,16 @@
     height: 20px;
   }
 }
+input:invalid {border-color: red;}
+input:valid {border-color: green;}
+
 .header-form {
   font-family: "Roboto";
   font-size: 20px;
   color: #000;
 }
 .button-form {
+  display: inline-block;
   width: 95px;
   height: 35px;
   background-color: #2F80ED;
@@ -27,6 +33,7 @@
   color: #fff;
   font-size: 14px;
   margin: 5px;
+  padding-top: 7px;
   border-radius: 5px;
   border: 0px;
   cursor: pointer;
