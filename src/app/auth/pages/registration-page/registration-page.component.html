@@ -1,17 +1,20 @@
 <div class="register">
   <h1 class="header-form">Registration</h1>
-  <form class="form-registration" id="id1">
+  <form class="form-registration" (ngSubmit)="register()">
     <input type="text" required />
     <p>First Name</p>
     <input type="text" required />
     <p>Last Name</p>
-    <input type="email" required />
+    <input [(ngModel)]="email" name="email" type="email" required />
     <p>email</p>
-    <input type="password" required />
+    <input
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      minlength="6"
+      required />
     <p>password</p>
-    <button class="button-form" type="submit" (submit)="register()">
-      Register
-    </button>
+    <button class="button" value="submit" type="submit">Register</button>
     <a
       [routerLink]="['/auth/login']"
       routerLinkActive="router-link-active"

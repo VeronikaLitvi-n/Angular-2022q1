@@ -27,14 +27,26 @@ input:valid {border-color: green;}
 .button-form {
   display: inline-block;
   width: 95px;
-  height: 35px;
+  height: 30px;
   background-color: #2F80ED;
   font-family: "Roboto";
   color: #fff;
   font-size: 14px;
   margin: 5px;
+  margin-top: 0;
   padding-top: 7px;
   border-radius: 5px;
   border: 0px;
+  cursor: pointer;
+}
+.button{
+  background-color: #2F80ED;
+  font-family: "Roboto";
+  color: #fff;
+  font-size: 14px;
+  width: 95px;
+  height: 37px;
+  border-radius: 5px;
+  border: 0;
   cursor: pointer;
 }
