@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { OnInit } from '@angular/core';
+import type { OnInit, OnDestroy } from '@angular/core';
 import { ISearchItemsFragment } from '../models/search-responce.model';
 import { ISearchItem } from '../models/search-item.model';
 import response from '../../../response.json';
@@ -11,7 +11,7 @@ import { SortService } from '../../services/sort.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   responseFragment: ISearchItemsFragment;
 
   searchItems: Array<ISearchItem>;
@@ -86,5 +86,10 @@ export class SearchResultsComponent implements OnInit {
     }
 
     this.searchItems = updatedItems;
+  }
+
+  ngOnDestroy() {
+    this.searchService.searchText$.unsubscribe();
+    this.sortService.sortData$.unsubscribe();
   }
 }
