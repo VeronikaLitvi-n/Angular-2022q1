@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalWindowComponent } from './header/modal-window/modal-window.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ModalLoginComponent } from './header/modal-login/modal-login.component';
+import { AddExclamationPipe } from './add-exclamation.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ModalLoginComponent } from './header/modal-login/modal-login.component'
     AddColorDirective,
     ModalWindowComponent,
     ModalLoginComponent,
+    AddExclamationPipe,
   ],
   imports: [
     BrowserModule,

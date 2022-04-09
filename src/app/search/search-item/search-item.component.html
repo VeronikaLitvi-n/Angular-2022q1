@@ -21,7 +21,7 @@
         <p class="comments-count">{{ commentsCount }}</p>
       </div>
     </div>
-    <h2 class="item-title">{{ itemTitle }}</h2>
+    <h2 class="item-title">{{ itemTitle | addExclamation }}</h2>
     <button class="details">more...</button>
   </div>
   <div class="color-container" appAddColor [publishedAt]="published"></div>
