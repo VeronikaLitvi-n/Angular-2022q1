@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { SearchService } from '../../../../youtube/services/search.service';
+import { ViewOptionService } from '../../../../youtube/services/view-option.service';
 
 @Component({
   selector: 'app-search-input',
@@ -19,9 +19,9 @@ export class SearchInputComponent {
     this.onshowSettings.emit(true);
   }
 
-  constructor(private readonly searchService: SearchService) {}
+  constructor(private readonly viewOptionService: ViewOptionService) {}
 
   public setSearchText(): void {
-    this.searchService.changeSearch(this.inputSearch);
+    this.viewOptionService.changeSearch(this.inputSearch);
   }
 }

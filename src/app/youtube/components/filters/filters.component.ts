@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SortService } from '../../services/sort.service';
+import { ViewOptionService } from '../../services/view-option.service';
 
 @Component({
   selector: 'app-filters',
@@ -7,7 +7,7 @@ import { SortService } from '../../services/sort.service';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent {
-  constructor(private readonly sortService: SortService) {}
+  constructor(private readonly viewOption: ViewOptionService) {}
 
   dateSortValues: Array<{ name: string; value: string }> = [
     { name: 'date (new first)', value: 'date-increase' },
@@ -62,6 +62,6 @@ export class FiltersComponent {
 
   public setSortValue(): void {
     console.log(this.buildSortParams());
-    this.sortService.changeSort(this.buildSortParams());
+    this.viewOption.changeSort(this.buildSortParams());
   }
 }

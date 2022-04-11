@@ -9,6 +9,7 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import type { Routes } from '@angular/router';
+import { AddExclamationPipe } from './pipes/add-exclamation.pipe';
 
 const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
 
@@ -20,6 +21,7 @@ const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
     NotFoundPageComponent,
     SearchItemComponent,
     SearchResultsComponent,
+    AddExclamationPipe,
   ],
   imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   exports: [

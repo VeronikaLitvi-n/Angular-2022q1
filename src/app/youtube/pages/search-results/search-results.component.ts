@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
-import type { OnInit } from '@angular/core';
+import type { OnInit, OnDestroy } from '@angular/core';
 import { ISearchItemsFragment } from '../../models/search-responce.model';
 import { ISearchItem } from '../../models/search-item.model';
 import response from '../../../../response.json';
-import { SearchService } from '../../services/search.service';
-import { SortService } from '../../services/sort.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ViewOptionService } from '../../services/view-option.service';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   responseFragment: ISearchItemsFragment;
 
   searchItems: Array<ISearchItem>;
@@ -37,23 +35,18 @@ export class SearchResultsComponent implements OnInit {
     return +a.statistics.viewCount - +b.statistics.viewCount;
   };
 
-  constructor(
-    private readonly searchService: SearchService,
-    private readonly sortService: SortService,
-    private router: Router,
-    public route: ActivatedRoute
-  ) {
+  constructor(private readonly viewOptionService: ViewOptionService) {
     this.responseFragment = response as ISearchItemsFragment;
     this.searchItems = this.responseFragment.items;
   }
 
   ngOnInit(): void {
-    this.searchService.searchText$.subscribe(searchText => {
+    this.viewOptionService.searchText$.subscribe(searchText => {
       this.searchFieldValue = searchText;
       this.updateResults();
     });
 
-    this.sortService.sortData$.subscribe(sortParams => {
+    this.viewOptionService.sortData$.subscribe(sortParams => {
       this.sortParams = sortParams;
       this.updateResults();
     });
@@ -89,5 +82,10 @@ export class SearchResultsComponent implements OnInit {
     }
 
     this.searchItems = updatedItems;
+  }
+
+  ngOnDestroy() {
+    this.viewOptionService.searchText$.unsubscribe();
+    this.viewOptionService.sortData$.unsubscribe();
   }
 }
