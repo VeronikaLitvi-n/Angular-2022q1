@@ -1,7 +1,7 @@
 <div class="authentication-block">
   <p class="name">{{ userName }}</p>
-  <button *ngIf="isLogged()" (click)="logout()">Выйти</button>
-  <button *ngIf="!isLogged()" (click)="goToLoginPage()">Войти</button>
+  <button *ngIf="isLogged" (click)="logout()">Выйти</button>
+  <button *ngIf="!isLogged" (click)="goToLoginPage()">Войти</button>
   <div
     class="avatar"
     [ngStyle]="{ 'background-image': 'url(' + login + ')' }"

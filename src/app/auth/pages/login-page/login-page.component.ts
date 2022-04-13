@@ -20,10 +20,10 @@ export class LoginPageComponent {
   loginUser() {
     let storageLogin = localStorage.getItem('login');
     let storagePassword = localStorage.getItem('password');
-    console.log(storageLogin, storagePassword, this.userName, this.password);
     if (this.userName === storageLogin && this.password === storagePassword) {
       localStorage.setItem('logged', 'true');
       this.authService.sendUserName(this.userName);
+      this.authService.isUSerLogged();
       this.router.navigate(['home']);
     }
   }

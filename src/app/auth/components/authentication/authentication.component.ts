@@ -11,7 +11,9 @@ import { AuthService } from '../../services/auth.service';
 export class AuthenticationComponent implements OnInit, OnDestroy {
   login = './assets/login.svg';
 
-  userName: string | null = null;
+  public userName: string | null = null;
+
+  public isLogged: boolean = false;
 
   constructor(
     private router: Router,
@@ -30,19 +32,17 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
     this.authService.userName$.subscribe(userName => {
       this.userName = userName;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.authService.userName$.unsubscribe();
-  }
-
-  isLogged(): boolean {
-    return this.userName !== null;
+    this.authService.isLogged.subscribe(val => (this.isLogged = val));
   }
 
   logout() {
     localStorage.clear();
     this.userName = null;
+    this.authService.isUSerLogged();
     this.router.navigate(['auth/login']);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.userName$.unsubscribe();
   }
 }
