@@ -20,7 +20,7 @@ export class FiltersComponent {
 
   dateSortChange() {
     this.selectedCountSortValue = '';
-    this.setSortValue();
+    this.changeSort();
   }
 
   countSortValues: Array<{ name: string; value: string }> = [
@@ -32,18 +32,14 @@ export class FiltersComponent {
 
   countSortChange() {
     this.selectedDateSortValue = '';
-    this.setSortValue();
+    this.changeSort();
   }
 
   tagInputChange() {
-    this.setSortValue();
+    this.viewOption.changeTagSearch(this.inputTagSort);
   }
 
   buildSortParams() {
-    let sortData: { sortType: string; tagInput: string } = {
-      sortType: '',
-      tagInput: '',
-    };
     let sortType = '';
     if (
       this.selectedDateSortValue === '' &&
@@ -55,13 +51,11 @@ export class FiltersComponent {
     } else if (this.selectedCountSortValue === '') {
       sortType = this.selectedDateSortValue;
     }
-    sortData.sortType = sortType;
-    sortData.tagInput = this.inputTagSort;
-    return sortData;
+
+    return sortType;
   }
 
-  public setSortValue(): void {
-    console.log(this.buildSortParams());
+  public changeSort(): void {
     this.viewOption.changeSort(this.buildSortParams());
   }
 }

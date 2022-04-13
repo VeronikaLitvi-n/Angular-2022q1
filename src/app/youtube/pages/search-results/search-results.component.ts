@@ -5,6 +5,7 @@ import { ISearchItem } from '../../models/search-item.model';
 import response from '../../../../response.json';
 import { ViewOptionService } from '../../../core/services/view-option.service';
 import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -18,10 +19,15 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   searchFieldValue: string = '';
 
-  sortParams: { sortType: string; tagInput: string } = {
-    sortType: '',
-    tagInput: '',
-  };
+  sortType: string = '';
+
+  tagInput: string = '';
+
+  titleSearchSubscription: Subscription | null = null;
+
+  tagSearchSubscription: Subscription | null = null;
+
+  sortTypeSubscription: Subscription | null = null;
 
   private readonly compareDate = (a: ISearchItem, b: ISearchItem): number => {
     let timeA = new Date(a.snippet.publishedAt).getTime();
@@ -44,17 +50,33 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   notifier = new Subject();
 
   ngOnInit(): void {
-    this.viewOptionService.searchText$
-      .pipe(takeUntil(this.notifier))
-      .subscribe(searchText => {
-        this.searchFieldValue = searchText;
+    this.titleSearchSubscription = this.viewOptionService.titleSearch$
+      .asObservable()
+      .pipe(
+        takeUntil(this.notifier),
+        debounceTime(1000),
+        filter(v => v.length >= 3 || v.length === 0),
+        distinctUntilChanged()
+      )
+      .subscribe(titleSearch => {
+        this.searchFieldValue = titleSearch;
         this.updateResults();
       });
 
-    this.viewOptionService.sortData$
+    this.sortTypeSubscription = this.viewOptionService.sortType$
+      .asObservable()
       .pipe(takeUntil(this.notifier))
-      .subscribe(sortParams => {
-        this.sortParams = sortParams;
+      .subscribe(sortType => {
+        this.sortType = sortType;
+        this.updateResults();
+      });
+
+    this.tagSearchSubscription = this.viewOptionService.tagSearch$
+      .asObservable()
+      .pipe(takeUntil(this.notifier))
+      .pipe(debounceTime(1000))
+      .subscribe(tagInput => {
+        this.tagInput = tagInput;
         this.updateResults();
       });
   }
@@ -69,8 +91,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       );
     }
 
-    let trimmedTag = this.sortParams.tagInput.trim();
-    let searchType = this.sortParams.sortType;
+    console.log(lowerCaseTrimmedText);
+    updatedItems.forEach(i => console.log(i.snippet.title));
+
+    let trimmedTag = this.tagInput.trim();
+    let searchType = this.sortType;
 
     if (trimmedTag.length > 0) {
       updatedItems = updatedItems.filter(item =>

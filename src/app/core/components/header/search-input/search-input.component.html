@@ -15,14 +15,8 @@
       id="inputSearch"
       class="search-input"
       placeholder="What are you want to find out?"
-      [(ngModel)]="inputSearch" />
-    <button
-      type="button"
-      class="search-button"
-      value="search"
-      (click)="setSearchText()">
-      search
-    </button>
+      [(ngModel)]="inputSearch"
+      (ngModelChange)="searchVideo()" />
   </div>
   <div
     class="settings-button"

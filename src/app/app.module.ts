@@ -8,6 +8,8 @@ import { SearchInputComponent } from './core/components/header/search-input/sear
 import { AuthenticationComponent } from './auth/components/authentication/authentication.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FiltersComponent } from './core/components/header/filters/filters.component';
+import { YoutubeModule } from './youtube/youtube.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,15 @@ import { FiltersComponent } from './core/components/header/filters/filters.compo
     FiltersComponent,
     SearchInputComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, CommonModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    CommonModule,
+    YoutubeModule,
+    HttpClientModule,
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -5,15 +5,21 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ViewOptionService {
-  public searchText$ = new Subject<string>();
+  public titleSearch$ = new Subject<string>();
 
-  public sortData$ = new Subject<{ sortType: string; tagInput: string }>();
+  public tagSearch$ = new Subject<string>();
 
-  public changeSearch(searchText: string) {
-    this.searchText$.next(searchText);
+  public sortType$ = new Subject<string>();
+
+  public changeTitleSearch(titleSearch: string) {
+    this.titleSearch$.next(titleSearch);
   }
 
-  public changeSort(sortData: { sortType: string; tagInput: string }) {
-    this.sortData$.next(sortData);
+  public changeTagSearch(tagSearch: string) {
+    this.tagSearch$.next(tagSearch);
+  }
+
+  public changeSort(sortType: string) {
+    this.sortType$.next(sortType);
   }
 }
