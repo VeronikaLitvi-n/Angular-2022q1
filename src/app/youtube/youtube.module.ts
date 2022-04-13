@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import type { Routes } from '@angular/router';
 import { AddExclamationPipe } from './pipes/add-exclamation.pipe';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { YoutubeInterceptor } from './interceptors/youtube.interceptor';
 
 const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
 
@@ -28,6 +30,9 @@ const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
     NotFoundPageComponent,
     SearchItemComponent,
     SearchResultsComponent,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true },
   ],
 })
 export class YoutubeModule {}
