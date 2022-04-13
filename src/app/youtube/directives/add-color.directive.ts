@@ -14,7 +14,6 @@ export class AddColorDirective implements OnInit {
     let publishedDate = new Date(this.publishedAt);
     let timeDiff = Math.abs(today.getTime() - publishedDate.getTime());
     let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    console.log(diffDays);
 
     let lineColor = '#e5e5e5';
     if (diffDays < 7) {

@@ -22,6 +22,10 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/auth/registration']);
   }
 
+  goToLoginPage() {
+    this.router.navigate(['/auth/login']);
+  }
+
   ngOnInit(): void {
     this.authService.userName$.subscribe(userName => {
       this.userName = userName;
