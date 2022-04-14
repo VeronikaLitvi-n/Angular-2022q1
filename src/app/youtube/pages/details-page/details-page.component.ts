@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import type { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import response from '../../../../response.json';
-import { ISearchItemsFragment } from '../../models/search-responce.model';
 import { ISearchItem } from '../../models/search-item.model';
+import { YoutubeService } from '../../services/youtube.service';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-details-page',
@@ -12,8 +12,6 @@ import { ISearchItem } from '../../models/search-item.model';
 })
 export class DetailsPageComponent implements OnInit {
   public videoId: string = '';
-
-  responseFragment: ISearchItemsFragment;
 
   item: ISearchItem | null = null;
 
@@ -35,23 +33,29 @@ export class DetailsPageComponent implements OnInit {
 
   @Input() description: string = '';
 
-  constructor(public route: ActivatedRoute) {
-    this.responseFragment = response as ISearchItemsFragment;
-  }
+  constructor(
+    public route: ActivatedRoute,
+    public readonly youtubeService: YoutubeService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.videoId = params['id'];
-      this.item = response.items.find(it => it.id === this.videoId)!;
-      this.imageURL = this.item.snippet.thumbnails.maxres.url;
-      this.itemTitle = this.item.snippet.title;
-      this.published = this.item.snippet.publishedAt;
-      this.description = this.item.snippet.description;
-      this.viewedCount = this.item.statistics.viewCount;
-      this.likedCount = this.item.statistics.likeCount;
-      this.dislikeCount = this.item.statistics.dislikeCount;
-      this.commentsCount = this.item.statistics.commentCount;
-    });
+    this.route.params
+      .pipe(
+        mergeMap(params => {
+          return this.youtubeService.getVideoById(params['id']);
+        })
+      )
+      .subscribe(item => {
+        console.log(item.snippet);
+        this.imageURL = item.snippet.thumbnails.maxres.url;
+        this.itemTitle = item.snippet.title;
+        this.published = item.snippet.publishedAt;
+        this.description = item.snippet.description;
+        this.viewedCount = item.statistics.viewCount;
+        this.likedCount = item.statistics.likeCount;
+        this.dislikeCount = item.statistics.dislikeCount;
+        this.commentsCount = item.statistics.commentCount;
+      });
   }
 
   returnBack() {

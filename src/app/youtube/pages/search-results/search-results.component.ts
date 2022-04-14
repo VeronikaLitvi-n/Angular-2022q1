@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
 import type { OnInit, OnDestroy } from '@angular/core';
-import { ISearchItemsFragment } from '../../models/search-responce.model';
 import { ISearchItem } from '../../models/search-item.model';
-import response from '../../../../response.json';
 import { ViewOptionService } from '../../../core/services/view-option.service';
-import { Subject, takeUntil } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
+import {
+  Subject,
+  takeUntil,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  Subscription,
+  switchMap,
+} from 'rxjs';
+import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-search-results',
@@ -13,9 +19,7 @@ import { debounceTime, distinctUntilChanged, filter, Subscription } from 'rxjs';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  responseFragment: ISearchItemsFragment;
-
-  searchItems: Array<ISearchItem>;
+  searchItems!: Array<ISearchItem>;
 
   searchFieldValue: string = '';
 
@@ -29,12 +33,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   sortTypeSubscription: Subscription | null = null;
 
-  private readonly compareDate = (a: ISearchItem, b: ISearchItem): number => {
-    let timeA = new Date(a.snippet.publishedAt).getTime();
-    let timeB = new Date(b.snippet.publishedAt).getTime();
-    return timeA - timeB;
-  };
-
   private readonly compareViewCount = (
     a: ISearchItem,
     b: ISearchItem
@@ -42,10 +40,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     return +a.statistics.viewCount - +b.statistics.viewCount;
   };
 
-  constructor(private readonly viewOptionService: ViewOptionService) {
-    this.responseFragment = response as ISearchItemsFragment;
-    this.searchItems = this.responseFragment.items;
-  }
+  constructor(
+    private readonly viewOptionService: ViewOptionService,
+    private readonly youtubeService: YoutubeService
+  ) {}
 
   notifier = new Subject();
 
@@ -56,12 +54,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         takeUntil(this.notifier),
         debounceTime(1000),
         filter(v => v.length >= 3 || v.length === 0),
-        distinctUntilChanged()
+        distinctUntilChanged(),
+        switchMap(title => this.youtubeService.getVideos(title))
       )
-      .subscribe(titleSearch => {
-        this.searchFieldValue = titleSearch;
-        this.updateResults();
+      .subscribe(searchedItems => {
+        this.searchItems = searchedItems;
       });
+
+    this.viewOptionService.changeTitleSearch('');
 
     this.sortTypeSubscription = this.viewOptionService.sortType$
       .asObservable()
@@ -81,18 +81,21 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       });
   }
 
+  private readonly compareDate = (a: ISearchItem, b: ISearchItem): number => {
+    let timeA = new Date(a.snippet.publishedAt).getTime();
+    let timeB = new Date(b.snippet.publishedAt).getTime();
+    return timeA - timeB;
+  };
+
   private updateResults() {
     let lowerCaseTrimmedText = this.searchFieldValue.toLowerCase().trim();
-    let updatedItems: ISearchItem[] = this.responseFragment.items;
+    let updatedItems: ISearchItem[] = this.searchItems;
 
     if (lowerCaseTrimmedText.length > 0) {
       updatedItems = updatedItems.filter(item =>
         item.snippet.title.toLowerCase().includes(lowerCaseTrimmedText)
       );
     }
-
-    console.log(lowerCaseTrimmedText);
-    updatedItems.forEach(i => console.log(i.snippet.title));
 
     let trimmedTag = this.tagInput.trim();
     let searchType = this.sortType;

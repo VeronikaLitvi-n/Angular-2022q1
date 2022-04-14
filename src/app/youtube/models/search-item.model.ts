@@ -4,7 +4,7 @@ interface ISearchItemFragmentThumbnails {
   height: number;
 }
 
-interface ISearchItemStatistics {
+export interface ISearchItemStatistics {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;
@@ -15,7 +15,10 @@ interface ISearchItemStatistics {
 export interface ISearchItem {
   kind: string;
   etag: string;
-  id: string;
+  id: {
+    kind: string;
+    videoId: string;
+  };
   snippet: {
     publishedAt: string;
     channelId: string;
@@ -39,4 +42,17 @@ export interface ISearchItem {
     defaultAudioLanguage: string;
   };
   statistics: ISearchItemStatistics;
+}
+
+interface IStatisticsItems {
+  etag: string;
+  id: string;
+  kind: string;
+  statistics: ISearchItemStatistics;
+}
+export interface ISearchItemStatisticsResponse {
+  etag: string;
+  items: IStatisticsItems[];
+  kind: string;
+  pageInfo: {};
 }
