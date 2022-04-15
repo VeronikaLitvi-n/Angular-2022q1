@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import type { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -43,7 +43,9 @@ export class LoginPageComponent implements OnInit {
     if (!control.value) {
       return null;
     }
-    const regex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+    const regex = new RegExp(
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\\!@#\\$%\\^\\[\\]]).{8,}$'
+    );
     const valid = regex.test(control.value);
     return valid ? null : { invalidPassword: true };
   }
@@ -52,12 +54,6 @@ export class LoginPageComponent implements OnInit {
     this.loginFormValue = this.loginForm.value;
     let storageLogin = localStorage.getItem('login');
     let storagePassword = localStorage.getItem('password');
-    console.log(
-      this.loginFormValue.mail,
-      storageLogin,
-      this.loginFormValue.password,
-      storagePassword
-    );
     if (
       this.loginFormValue.mail === storageLogin &&
       this.loginFormValue.password === storagePassword

@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchInputComponent } from './components/header/search-input/search-input.component';
 import { FiltersComponent } from './components/header/filters/filters.component';
+import { SearchInputComponent } from './header/componens/search-input/search-input.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchInputComponent],
-  imports: [CommonModule],
+  declarations: [FiltersComponent, AdminPageComponent, SearchInputComponent],
+  imports: [
+    CommonModule,
+    SearchInputComponent,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class CoreModule {}

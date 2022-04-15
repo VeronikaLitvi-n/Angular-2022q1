@@ -4,6 +4,7 @@ import type { Routes } from '@angular/router';
 import { SearchResultsComponent } from './youtube/pages/search-results/search-results.component';
 import { NotFoundPageComponent } from './youtube/components/not-found-page/not-found-page.component';
 import { AuthGuard } from './core/services/auth.guard';
+import { AdminPageComponent } from './core/pages/admin-page/admin-page.component';
 const routes: Routes = [
   { path: 'not-found', component: NotFoundPageComponent },
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminPageComponent,
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

@@ -10,6 +10,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FiltersComponent } from './core/components/header/filters/filters.component';
 import { YoutubeModule } from './youtube/youtube.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPageComponent } from './core/pages/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     FiltersComponent,
     SearchInputComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
