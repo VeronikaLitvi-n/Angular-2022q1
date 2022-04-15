@@ -21,10 +21,6 @@ export class RegistrationPageComponent implements OnInit {
     password: string;
   };
 
-  password: string = '';
-
-  email: string = '';
-
   public registerForm!: FormGroup;
 
   constructor(public router: Router, private formBuilder: FormBuilder) {}

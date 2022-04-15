@@ -21,5 +21,6 @@
   <div
     class="settings-button"
     [ngStyle]="{ 'background-image': 'url(' + settings + ')' }"
-    (click)="toggleSettings()"></div>
+    (click)="showSettings()"></div>
+  <a type="button" [routerLink]="['/auth/registration']">Admin</a>
 </div>

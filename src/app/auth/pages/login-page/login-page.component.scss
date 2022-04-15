@@ -12,9 +12,24 @@
     color: #929292;
   }
   input {
-    width: 60%;
-    height: 20px;
+    width: 70%;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
   }
+}
+.label {
+  display: block;
+  text-align: left;
+  margin-left: 14%;
+}
+input:invalid {
+  border-bottom: 2px solid #a94442;
+}
+input:valid {border-color: green;}
+
+.ng-invalid:not(.register)  {
+  background-color:#e16a683f;
 }
 .header-form {
   font-family: 'Roboto';
@@ -34,4 +49,21 @@
   border-radius: 5px;
   border: 0px;
   cursor: pointer;
+}
+
+.text-danger {
+  display: block;
+}
+
+.button{
+  background-color: #2F80ED;
+  font-family: "Roboto";
+  color: #fff;
+  font-size: 14px;
+  width: 95px;
+  height: 35px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  margin-top: 15px;
 }

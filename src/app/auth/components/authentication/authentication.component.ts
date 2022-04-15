@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class AuthenticationComponent implements OnInit, OnDestroy {
   login = './assets/login.svg';
 
-  public userName: string | null = null;
+  public userName: string = 'Your Name';
 
   public isLogged: boolean = false;
 
@@ -37,7 +37,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
 
   logout() {
     localStorage.clear();
-    this.userName = null;
+    this.userName = 'Your Name';
     this.authService.isUSerLogged();
     this.router.navigate(['auth/login']);
   }
