@@ -43,16 +43,3 @@ export interface ISearchItem {
   };
   statistics: ISearchItemStatistics;
 }
-
-interface IStatisticsItems {
-  etag: string;
-  id: string;
-  kind: string;
-  statistics: ISearchItemStatistics;
-}
-export interface ISearchItemStatisticsResponse {
-  etag: string;
-  items: IStatisticsItems[];
-  kind: string;
-  pageInfo: {};
-}

@@ -1,5 +1,5 @@
 <div class="search-results">
-  <div class="search-result" *ngFor="let item of searchItems">
+  <div class="search-result" *ngFor="let item of searchedSortedItems">
     <app-search-item
       [itemWidth]="item.snippet.thumbnails.medium.width"
       [imageURL]="item.snippet.thumbnails.medium.url"

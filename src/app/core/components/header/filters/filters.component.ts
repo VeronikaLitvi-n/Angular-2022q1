@@ -10,8 +10,8 @@ export class FiltersComponent {
   constructor(private readonly viewOption: ViewOptionService) {}
 
   dateSortValues: Array<{ name: string; value: string }> = [
-    { name: 'date (new first)', value: 'date-increase' },
-    { name: 'date (old first)', value: 'date-decrease' },
+    { name: 'date (old first)', value: 'date-increase' },
+    { name: 'date (new first)', value: 'date-decrease' },
   ];
 
   selectedDateSortValue: string = '';

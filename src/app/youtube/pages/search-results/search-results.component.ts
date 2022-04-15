@@ -19,7 +19,9 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  searchItems!: Array<ISearchItem>;
+  searchedItems!: Array<ISearchItem>;
+
+  searchedSortedItems!: Array<ISearchItem>;
 
   searchFieldValue: string = '';
 
@@ -58,7 +60,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         switchMap(title => this.youtubeService.getVideos(title))
       )
       .subscribe(searchedItems => {
-        this.searchItems = searchedItems;
+        this.searchedItems = searchedItems;
+        this.updateResults();
       });
 
     this.viewOptionService.changeTitleSearch('');
@@ -89,7 +92,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   private updateResults() {
     let lowerCaseTrimmedText = this.searchFieldValue.toLowerCase().trim();
-    let updatedItems: ISearchItem[] = this.searchItems;
+    let updatedItems: ISearchItem[] = this.searchedItems;
 
     if (lowerCaseTrimmedText.length > 0) {
       updatedItems = updatedItems.filter(item =>
@@ -116,7 +119,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       updatedItems.sort((a, b) => this.compareViewCount(b, a));
     }
 
-    this.searchItems = updatedItems;
+    this.searchedSortedItems = updatedItems;
   }
 
   ngOnDestroy() {
