@@ -1,0 +1,33 @@
+.login {
+  width: 35vw;
+  height: 40vh;
+  background-color: #E5E5E5;
+  text-align: center;
+  padding: 20px;
+  p {
+    font-family: "Roboto";
+    font-size: 12px;
+    color: #929292;
+  }
+  input {
+    width: 60%;
+    height: 20px;
+  }
+}
+.header-form {
+  font-family: "Roboto";
+  font-size: 20px;
+  color: #000;
+}
+.button-form {
+  width: 95px;
+  height: 35px;
+  background-color: #2F80ED;
+  font-family: "Roboto";
+  color: #fff;
+  font-size: 14px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+}

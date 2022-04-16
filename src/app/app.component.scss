@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  display: flex;
+  background-color: #E5E5E5;
+}
+app-search-input {
+  width: 75%;
+  padding-left: 150px;
+}
+app-authentication {
+  padding-right: 30px;
+}
+app-search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 30px;
+}
+
+
