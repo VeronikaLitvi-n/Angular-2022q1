@@ -3,7 +3,8 @@ import type { OnInit, OnDestroy } from '@angular/core';
 import { ISearchItemsFragment } from '../../models/search-responce.model';
 import { ISearchItem } from '../../models/search-item.model';
 import response from '../../../../response.json';
-import { ViewOptionService } from '../../services/view-option.service';
+import { ViewOptionService } from '../../../core/services/view-option.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
@@ -40,16 +41,22 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.searchItems = this.responseFragment.items;
   }
 
-  ngOnInit(): void {
-    this.viewOptionService.searchText$.subscribe(searchText => {
-      this.searchFieldValue = searchText;
-      this.updateResults();
-    });
+  notifier = new Subject();
 
-    this.viewOptionService.sortData$.subscribe(sortParams => {
-      this.sortParams = sortParams;
-      this.updateResults();
-    });
+  ngOnInit(): void {
+    this.viewOptionService.searchText$
+      .pipe(takeUntil(this.notifier))
+      .subscribe(searchText => {
+        this.searchFieldValue = searchText;
+        this.updateResults();
+      });
+
+    this.viewOptionService.sortData$
+      .pipe(takeUntil(this.notifier))
+      .subscribe(sortParams => {
+        this.sortParams = sortParams;
+        this.updateResults();
+      });
   }
 
   private updateResults() {
@@ -85,7 +92,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.viewOptionService.searchText$.unsubscribe();
-    this.viewOptionService.sortData$.unsubscribe();
+    this.notifier.next(null);
+    this.notifier.complete();
   }
 }

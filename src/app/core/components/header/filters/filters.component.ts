@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewOptionService } from '../../services/view-option.service';
+import { ViewOptionService } from '../../../services/view-option.service';
 
 @Component({
   selector: 'app-filters',

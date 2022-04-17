@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchInputComponent } from './header/componens/search-input/search-input.component';
+import { SearchInputComponent } from './components/header/search-input/search-input.component';
+import { FiltersComponent } from './components/header/filters/filters.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, SearchInputComponent],
+  declarations: [FiltersComponent, SearchInputComponent],
+  imports: [CommonModule],
 })
 export class CoreModule {}
