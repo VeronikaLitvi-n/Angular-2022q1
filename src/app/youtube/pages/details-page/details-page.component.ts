@@ -46,7 +46,6 @@ export class DetailsPageComponent implements OnInit {
         })
       )
       .subscribe(item => {
-        console.log(item.snippet);
         this.imageURL = item.snippet.thumbnails.maxres.url;
         this.itemTitle = item.snippet.title;
         this.published = item.snippet.publishedAt;
