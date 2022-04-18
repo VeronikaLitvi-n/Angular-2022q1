@@ -80,6 +80,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(1000))
       .subscribe(tagInput => {
         this.tagInput = tagInput;
+        console.log(this.tagInput);
         this.updateResults();
       });
   }

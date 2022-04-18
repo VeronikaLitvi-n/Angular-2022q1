@@ -21,8 +21,8 @@ export class SearchInputComponent {
     private readonly openSettingsService: OpenSettingsService
   ) {}
 
-  public setSearchText(): void {
-    this.viewOptionService.changeSearch(this.inputSearch);
+  public searchVideo() {
+    this.viewOptionService.changeTitleSearch(this.inputSearch);
   }
 
   public toggleSettings() {
