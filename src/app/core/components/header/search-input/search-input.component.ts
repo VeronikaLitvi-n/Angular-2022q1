@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OpenSettingsService } from '../../../services/open-settings.service';
 import { ViewOptionService } from '../../../services/view-option.service';
 
 @Component({
@@ -16,10 +15,7 @@ export class SearchInputComponent {
 
   settingsClicked: boolean = false;
 
-  constructor(
-    private readonly viewOptionService: ViewOptionService,
-    private readonly openSettingsService: OpenSettingsService
-  ) {}
+  constructor(private readonly viewOptionService: ViewOptionService) {}
 
   public searchVideo() {
     this.viewOptionService.changeTitleSearch(this.inputSearch);
@@ -27,6 +23,6 @@ export class SearchInputComponent {
 
   public toggleSettings() {
     this.settingsClicked = !this.settingsClicked;
-    this.openSettingsService.showSettings(this.settingsClicked);
+    this.viewOptionService.showSettings(this.settingsClicked);
   }
 }

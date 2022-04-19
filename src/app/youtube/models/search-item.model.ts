@@ -1,15 +1,9 @@
+import { IItemStatistics } from './item-statistics.model';
+
 interface ISearchItemFragmentThumbnails {
   url: string;
   width: number;
   height: number;
-}
-
-export interface ISearchItemStatistics {
-  viewCount: string;
-  likeCount: string;
-  dislikeCount: string;
-  favoriteCount: string;
-  commentCount: string;
 }
 
 export interface ISearchItem {
@@ -18,6 +12,8 @@ export interface ISearchItem {
   id: {
     kind: string;
     videoId: string;
+    channelId: string;
+    playlistId: string;
   };
   snippet: {
     publishedAt: string;
@@ -31,15 +27,8 @@ export interface ISearchItem {
       standard: ISearchItemFragmentThumbnails;
       maxres: ISearchItemFragmentThumbnails;
     };
+    statistics: IItemStatistics;
     channelTitle: string;
-    tags: string[];
-    categoryId: string;
     liveBroadcastContent: string;
-    localized: {
-      title: string;
-      description: string;
-    };
-    defaultAudioLanguage: string;
   };
-  statistics: ISearchItemStatistics;
 }

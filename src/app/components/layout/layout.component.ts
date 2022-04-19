@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import type { OnInit } from '@angular/core';
-import { OpenSettingsService } from '../../core/services/open-settings.service';
+import { ViewOptionService } from '../../core/services/view-option.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,10 +10,10 @@ import { OpenSettingsService } from '../../core/services/open-settings.service';
 export class LayoutComponent implements OnInit {
   toggleFilters!: boolean;
 
-  constructor(private readonly openSettingsService: OpenSettingsService) {}
+  constructor(private readonly viewOptionService: ViewOptionService) {}
 
   ngOnInit(): void {
-    this.openSettingsService.isShowSettings$.subscribe(
+    this.viewOptionService.isShowSettings$.subscribe(
       isShowSettings => (this.toggleFilters = isShowSettings)
     );
   }

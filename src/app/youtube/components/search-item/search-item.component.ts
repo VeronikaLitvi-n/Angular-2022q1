@@ -22,5 +22,5 @@ export class SearchItemComponent {
 
   @Input() published: string = '';
 
-  @Input() itemId: string = '';
+  @Input() itemId!: string;
 }

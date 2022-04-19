@@ -11,6 +11,8 @@ export class ViewOptionService {
 
   public sortType$ = new Subject<string>();
 
+  public isShowSettings$ = new Subject<boolean>();
+
   public changeTitleSearch(titleSearch: string) {
     this.titleSearch$.next(titleSearch);
   }
@@ -21,5 +23,9 @@ export class ViewOptionService {
 
   public changeSort(sortType: string) {
     this.sortType$.next(sortType);
+  }
+
+  public showSettings(isShowSettings: boolean) {
+    this.isShowSettings$.next(isShowSettings);
   }
 }

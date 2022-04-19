@@ -5,12 +5,10 @@ import { DetailsPageComponent } from './pages/details-page/details-page.componen
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import type { Routes } from '@angular/router';
 import { AddExclamationPipe } from './pipes/add-exclamation.pipe';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { YoutubeInterceptor } from './interceptors/youtube.interceptor';
 
 const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
 
@@ -23,7 +21,12 @@ const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
     SearchResultsComponent,
     AddExclamationPipe,
   ],
-  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [
     AddColorDirective,
     DetailsPageComponent,
@@ -31,8 +34,6 @@ const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
     SearchItemComponent,
     SearchResultsComponent,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true },
-  ],
+  providers: [],
 })
 export class YoutubeModule {}

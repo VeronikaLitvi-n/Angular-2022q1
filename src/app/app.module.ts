@@ -8,9 +8,9 @@ import { SearchInputComponent } from './core/components/header/search-input/sear
 import { AuthenticationComponent } from './auth/components/authentication/authentication.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FiltersComponent } from './core/components/header/filters/filters.component';
-import { YoutubeModule } from './youtube/youtube.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminPageComponent } from './core/pages/admin-page/admin-page.component';
+import { YoutubeInterceptor } from './core/interceptors/youtube.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,12 +26,13 @@ import { AdminPageComponent } from './core/pages/admin-page/admin-page.component
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    YoutubeModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

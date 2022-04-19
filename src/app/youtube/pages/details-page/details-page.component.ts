@@ -11,7 +11,7 @@ import { mergeMap } from 'rxjs';
   styleUrls: ['./details-page.component.scss'],
 })
 export class DetailsPageComponent implements OnInit {
-  public videoId: string = '';
+  public videoId!: string;
 
   item: ISearchItem | null = null;
 
@@ -46,7 +46,7 @@ export class DetailsPageComponent implements OnInit {
         })
       )
       .subscribe(item => {
-        this.imageURL = item.snippet.thumbnails.maxres.url;
+        this.imageURL = item.snippet.thumbnails.standard.url;
         this.itemTitle = item.snippet.title;
         this.published = item.snippet.publishedAt;
         this.description = item.snippet.description;

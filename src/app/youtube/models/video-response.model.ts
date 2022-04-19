@@ -1,14 +1,13 @@
-import { ISearchItem } from './search-item.model';
+import { IVideoItem } from './video-item.model';
 
-export interface ISearchItemsFragment {
+export interface IVideoItemsFragment {
   kind: string;
   etag: string;
   nextPageToken: string;
   prevPageToken: string;
-  regionCode: string;
   pageInfo: {
     totalResults: number;
     resultsPerPage: number;
   };
-  items: Array<ISearchItem>;
+  items: Array<IVideoItem>;
 }

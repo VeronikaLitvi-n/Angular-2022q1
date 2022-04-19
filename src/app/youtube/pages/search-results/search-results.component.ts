@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import type { OnInit, OnDestroy } from '@angular/core';
-import { ISearchItem } from '../../models/search-item.model';
 import { ViewOptionService } from '../../../core/services/view-option.service';
 import {
   Subject,
@@ -12,6 +11,7 @@ import {
   switchMap,
 } from 'rxjs';
 import { YoutubeService } from '../../services/youtube.service';
+import { IVideoItem } from '../../models/video-item.model';
 
 @Component({
   selector: 'app-search-results',
@@ -19,9 +19,9 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-  searchedItems!: Array<ISearchItem>;
+  searchedItems!: Array<IVideoItem>;
 
-  searchedSortedItems!: Array<ISearchItem>;
+  searchedSortedItems!: Array<IVideoItem>;
 
   searchFieldValue: string = '';
 
@@ -36,8 +36,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   sortTypeSubscription: Subscription | null = null;
 
   private readonly compareViewCount = (
-    a: ISearchItem,
-    b: ISearchItem
+    a: IVideoItem,
+    b: IVideoItem
   ): number => {
     return +a.statistics.viewCount - +b.statistics.viewCount;
   };
@@ -85,7 +85,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       });
   }
 
-  private readonly compareDate = (a: ISearchItem, b: ISearchItem): number => {
+  private readonly compareDate = (a: IVideoItem, b: IVideoItem): number => {
     let timeA = new Date(a.snippet.publishedAt).getTime();
     let timeB = new Date(b.snippet.publishedAt).getTime();
     return timeA - timeB;
@@ -93,7 +93,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   private updateResults() {
     let lowerCaseTrimmedText = this.searchFieldValue.toLowerCase().trim();
-    let updatedItems: ISearchItem[] = this.searchedItems;
+    let updatedItems: IVideoItem[] = this.searchedItems;
 
     if (lowerCaseTrimmedText.length > 0) {
       updatedItems = updatedItems.filter(item =>
