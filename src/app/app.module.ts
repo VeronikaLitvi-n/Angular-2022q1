@@ -11,6 +11,9 @@ import { FiltersComponent } from './core/components/header/filters/filters.compo
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminPageComponent } from './core/pages/admin-page/admin-page.component';
 import { YoutubeInterceptor } from './core/interceptors/youtube.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { state } from '../app/redux/app.state';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,19 @@ import { YoutubeInterceptor } from './core/interceptors/youtube.interceptor';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(state, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        // strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+        strictActionTypeUniqueness: true,
+      },
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
   ],
 
   providers: [

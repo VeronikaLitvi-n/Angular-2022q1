@@ -7,6 +7,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { IState } from '../../../redux/state.model';
+import { createCustomCard } from '../../../redux/actions/customCards.actions';
 
 @Component({
   selector: 'app-admin-page',
@@ -16,7 +19,11 @@ import {
 export class AdminPageComponent implements OnInit {
   public adminForm!: FormGroup;
 
-  constructor(public router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    public router: Router,
+    private formBuilder: FormBuilder,
+    private store: Store<IState>
+  ) {}
 
   ngOnInit(): void {
     this.adminForm = this.formBuilder.group({
@@ -63,7 +70,9 @@ export class AdminPageComponent implements OnInit {
   }
 
   submit() {
-    alert('New card created');
+    this.store.dispatch(
+      createCustomCard({ newCustomCard: this.adminForm.value })
+    );
     this.router.navigate(['home']);
   }
 }
