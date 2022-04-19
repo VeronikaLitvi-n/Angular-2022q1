@@ -1,0 +1,15 @@
+<div class="search-results">
+  <div class="search-result" *ngFor="let item of searchItems">
+    <app-search-item
+      [itemWidth]="item.snippet.thumbnails.medium.width"
+      [imageURL]="item.snippet.thumbnails.medium.url"
+      [viewedCount]="item.statistics.viewCount"
+      [likedCount]="item.statistics.likeCount"
+      [dislikeCount]="item.statistics.dislikeCount"
+      [commentsCount]="item.statistics.commentCount"
+      [itemTitle]="item.snippet.title"
+      [published]="item.snippet.publishedAt"
+      [itemId]="item.id">
+    </app-search-item>
+  </div>
+</div>
