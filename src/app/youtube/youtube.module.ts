@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import type { Routes } from '@angular/router';
 import { AddExclamationPipe } from './pipes/add-exclamation.pipe';
+import { CustomCardsComponent } from './components/custom-cards/custom-cards.component';
 
 const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
 
@@ -20,6 +21,7 @@ const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
     SearchItemComponent,
     SearchResultsComponent,
     AddExclamationPipe,
+    CustomCardsComponent,
   ],
   imports: [
     CommonModule,

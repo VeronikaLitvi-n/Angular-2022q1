@@ -3,7 +3,10 @@ import type { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ISearchItem } from '../../models/search-item.model';
 import { YoutubeService } from '../../services/youtube.service';
-import { mergeMap } from 'rxjs';
+import { mergeMap, of } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { IState } from '../../../redux/state.model';
+import { getCustomCards } from '../../../redux/selectors/customCards.selector';
 
 @Component({
   selector: 'app-details-page',
@@ -35,14 +38,23 @@ export class DetailsPageComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    public readonly youtubeService: YoutubeService
+    public readonly youtubeService: YoutubeService,
+    private store: Store<IState>
   ) {}
 
   ngOnInit(): void {
     this.route.params
       .pipe(
         mergeMap(params => {
-          return this.youtubeService.getVideoById(params['id']);
+          return this.store.pipe(
+            select(getCustomCards),
+            mergeMap(customCards => {
+              let card = customCards.find(c => c.id === params['id']);
+              return card
+                ? of(card)
+                : this.youtubeService.getVideoById(params['id']);
+            })
+          );
         })
       )
       .subscribe(item => {

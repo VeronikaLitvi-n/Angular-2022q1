@@ -1,0 +1,40 @@
+.custom-item {
+  margin: 20px;
+  width: 340px;
+  height: 420px;
+}
+.custom-container {
+  position: relative;
+  background-color: #e5e5e5;
+  padding: 20px;
+  min-height: 98%;
+  img {
+    width: 280px;
+    height: 180px;
+    margin: 0 auto;
+  }
+}
+.item-title {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+.details {
+  position: absolute;
+  bottom: 30px;
+  left: 30%;
+  width: 120px;
+  height: 30px;
+  background-color: #2f80ed;
+  color: #ffffff;
+  font-family: "Roboto";
+  font-size: 12px;
+  border: 0px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+.color-container {
+  height: 2%;
+}

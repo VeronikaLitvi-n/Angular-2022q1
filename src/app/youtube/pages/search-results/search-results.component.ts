@@ -12,6 +12,11 @@ import {
 } from 'rxjs';
 import { YoutubeService } from '../../services/youtube.service';
 import { IVideoItem } from '../../models/video-item.model';
+import { IState } from '../../../redux/state.model';
+import { Store, select } from '@ngrx/store';
+import { updateYoutubeVideosSuccess } from '../../../redux/actions/youtubeVideos.actions';
+import { ICustomCard } from '../../../core/models/custom-card.model';
+import { getCustomCards as getCustomCards } from '../../../redux/selectors/customCards.selector';
 
 @Component({
   selector: 'app-search-results',
@@ -20,6 +25,8 @@ import { IVideoItem } from '../../models/video-item.model';
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
   searchedItems!: Array<IVideoItem>;
+
+  customCards!: Array<ICustomCard>;
 
   searchedSortedItems!: Array<IVideoItem>;
 
@@ -44,7 +51,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly viewOptionService: ViewOptionService,
-    private readonly youtubeService: YoutubeService
+    private readonly youtubeService: YoutubeService,
+    private store: Store<IState>
   ) {}
 
   notifier = new Subject();
@@ -60,6 +68,9 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         switchMap(title => this.youtubeService.getVideos(title))
       )
       .subscribe(searchedItems => {
+        this.store.dispatch(
+          updateYoutubeVideosSuccess({ videoResponse: searchedItems })
+        );
         this.searchedItems = searchedItems;
         this.updateResults();
       });
@@ -80,9 +91,12 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       .pipe(debounceTime(1000))
       .subscribe(tagInput => {
         this.tagInput = tagInput;
-        console.log(this.tagInput);
         this.updateResults();
       });
+
+    this.store
+      .pipe(select(getCustomCards))
+      .subscribe(cards => (this.customCards = cards));
   }
 
   private readonly compareDate = (a: IVideoItem, b: IVideoItem): number => {
@@ -119,7 +133,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     } else if (searchType === 'count-decrease') {
       updatedItems.sort((a, b) => this.compareViewCount(b, a));
     }
-
     this.searchedSortedItems = updatedItems;
   }
 

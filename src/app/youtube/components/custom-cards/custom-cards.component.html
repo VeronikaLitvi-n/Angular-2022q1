@@ -1,0 +1,16 @@
+<div class="custom-item">
+  <div class="custom-container">
+    <img src="{{ customImageURL }}" alt="preview" />
+    <h2 class="item-title">{{ customItemTitle }}</h2>
+    <a
+      [routerLink]="['/video/', itemId]"
+      routerLinkActive="router-link-active"
+      class="details"
+      >more...</a
+    >
+  </div>
+  <div
+    class="color-container"
+    appAddColor
+    [publishedAt]="customPublished"></div>
+</div>

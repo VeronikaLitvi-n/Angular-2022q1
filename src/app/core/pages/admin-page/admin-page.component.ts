@@ -10,6 +10,8 @@ import {
 import { Store } from '@ngrx/store';
 import { IState } from '../../../redux/state.model';
 import { createCustomCard } from '../../../redux/actions/customCards.actions';
+import { ICustomCard } from '../../models/custom-card.model';
+import { nanoid } from 'nanoid';
 
 @Component({
   selector: 'app-admin-page',
@@ -71,7 +73,27 @@ export class AdminPageComponent implements OnInit {
 
   submit() {
     this.store.dispatch(
-      createCustomCard({ newCustomCard: this.adminForm.value })
+      createCustomCard({
+        newCustomCard: {
+          snippet: {
+            title: this.adminForm.controls['title'].value,
+            description: this.adminForm.controls['description'].value,
+            thumbnails: {
+              medium: { url: this.adminForm.controls['img'].value },
+              standard: { url: this.adminForm.controls['img'].value },
+            },
+            publishedAt: this.adminForm.controls['creationDate'].value,
+          },
+          id: nanoid(10),
+          statistics: {
+            viewCount: '1',
+            likeCount: '1',
+            dislikeCount: '1',
+            favoriteCount: '1',
+            commentCount: '1',
+          },
+        } as ICustomCard,
+      })
     );
     this.router.navigate(['home']);
   }
