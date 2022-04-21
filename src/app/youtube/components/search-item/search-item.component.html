@@ -1,0 +1,33 @@
+<div
+  class="search-item"
+  [ngStyle]="{ 'width.px': itemWidth + 40, 'height.px': itemWidth + 100 }">
+  <div class="item-container">
+    <img src="{{ imageURL }}" alt="preview" />
+    <div class="marks-panel">
+      <div class="viewed statistic">
+        <div class="viewed-img"></div>
+        <p class="viewed-count">{{ viewedCount }}</p>
+      </div>
+      <div class="liked statistic">
+        <div class="liked-img"></div>
+        <p class="liked-count">{{ likedCount }}</p>
+      </div>
+      <div class="dislike statistic">
+        <div class="dislike-img"></div>
+        <p class="dislike-count">{{ dislikeCount }}</p>
+      </div>
+      <div class="comments statistic">
+        <div class="comments-img"></div>
+        <p class="comments-count">{{ commentsCount }}</p>
+      </div>
+    </div>
+    <h2 class="item-title">{{ itemTitle }}</h2>
+    <a
+      [routerLink]="['/video/', itemId]"
+      routerLinkActive="router-link-active"
+      class="details"
+      >more...</a
+    >
+  </div>
+  <div class="color-container" appAddColor [publishedAt]="published"></div>
+</div>

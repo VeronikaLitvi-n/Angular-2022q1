@@ -1,0 +1,10 @@
+<header>
+  <div class="header">
+    <app-search-input></app-search-input>
+    <app-authentication></app-authentication>
+  </div>
+  <app-filters *ngIf="toggleFilters"></app-filters>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>

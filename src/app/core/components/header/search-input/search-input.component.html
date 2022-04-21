@@ -1,0 +1,26 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+  rel="stylesheet" />
+
+<div class="search-container">
+  <div
+    class="logo"
+    [ngStyle]="{ 'background-image': 'url(' + logo + ')' }"></div>
+  <div class="search-field">
+    <input
+      type="text"
+      name="inputSearch"
+      id="inputSearch"
+      class="search-input"
+      placeholder="What are you want to find out?"
+      [(ngModel)]="inputSearch"
+      (ngModelChange)="searchVideo()" />
+  </div>
+  <div
+    class="settings-button"
+    [ngStyle]="{ 'background-image': 'url(' + settings + ')' }"
+    (click)="toggleSettings()"></div>
+  <a type="button" class="button-form" [routerLink]="['admin']">Admin</a>
+</div>

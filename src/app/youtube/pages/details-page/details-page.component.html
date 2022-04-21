@@ -1,0 +1,33 @@
+<div class="details-page">
+  <div class="back-button" (click)="returnBack()"></div>
+  <img class="details-img" src="{{ imageURL }}" alt="preview" />
+  <div class="video-description">
+    <div class="main-info">
+      <div class="video-title">
+        <p class="title">{{ itemTitle }}</p>
+        <p class="date">{{ published | date: 'fullDate' }}</p>
+      </div>
+      <p class="description-title">Description:</p>
+      <p class="description">{{ description }}</p>
+    </div>
+    <div class="marks-panel">
+      <div class="viewed statistic">
+        <div class="viewed-img"></div>
+        <p class="viewed-count">{{ viewedCount }}</p>
+      </div>
+      <div class="liked statistic">
+        <div class="liked-img"></div>
+        <p class="liked-count">{{ likedCount }}</p>
+      </div>
+      <div class="dislike statistic">
+        <div class="dislike-img"></div>
+        <p class="dislike-count">{{ dislikeCount }}</p>
+      </div>
+      <div class="comments statistic">
+        <div class="comments-img"></div>
+        <p class="comments-count">{{ commentsCount }}</p>
+      </div>
+    </div>
+    <div class="color-panel" appAddColor [publishedAt]="published"></div>
+  </div>
+</div>

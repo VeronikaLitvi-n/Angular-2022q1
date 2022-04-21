@@ -1,0 +1,34 @@
+<div class="filters">
+  <p class="filters-title">Sorting by:</p>
+
+  <select
+    class="filters-select filters-date"
+    [(ngModel)]="selectedDateSortValue"
+    name="dateSort"
+    (change)="dateSortChange()">
+    <option value="">date</option>
+    <option [ngValue]="dateSort.value" *ngFor="let dateSort of dateSortValues">
+      {{ dateSort.name }}
+    </option>
+  </select>
+
+  <select
+    class="filters-select filters-count"
+    [(ngModel)]="selectedCountSortValue"
+    name="countSort"
+    (change)="countSortChange()">
+    <option value="">count of views</option>
+    <option
+      [ngValue]="countSort.value"
+      *ngFor="let countSort of countSortValues">
+      {{ countSort.name }}
+    </option>
+  </select>
+
+  <p class="filters-word">by word or sentence</p>
+  <input
+    class="input-word"
+    type="text"
+    [(ngModel)]="inputTagSort"
+    (change)="tagInputChange()" />
+</div>
