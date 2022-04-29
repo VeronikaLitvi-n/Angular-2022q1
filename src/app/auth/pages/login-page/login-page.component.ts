@@ -61,7 +61,7 @@ export class LoginPageComponent implements OnInit {
       localStorage.setItem('logged', 'true');
       this.authService.sendUserName(this.loginFormValue.mail);
       this.authService.isUSerLogged();
-      this.router.navigate(['home']);
+      this.router.navigate(['home/video']);
     }
   }
 }

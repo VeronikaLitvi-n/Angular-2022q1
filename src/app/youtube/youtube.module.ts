@@ -10,7 +10,10 @@ import { RouterModule } from '@angular/router';
 import type { Routes } from '@angular/router';
 import { AddExclamationPipe } from './pipes/add-exclamation.pipe';
 
-const routes: Routes = [{ path: ':id', component: DetailsPageComponent }];
+const routes: Routes = [
+  { path: 'video', component: SearchResultsComponent },
+  { path: ':id', component: DetailsPageComponent },
+];
 
 @NgModule({
   declarations: [
