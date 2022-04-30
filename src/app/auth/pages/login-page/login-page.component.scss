@@ -23,13 +23,12 @@
   text-align: left;
   margin-left: 14%;
 }
-input:invalid {
-  border-bottom: 2px solid #a94442;
+input.ng-touched.ng-invalid {
+  border: 2px solid red;
 }
-input:valid {border-color: green;}
 
-.ng-invalid:not(.register)  {
-  background-color:#e16a683f;
+form.ng-touched.ng-invalid {
+  background-color: rgba(180, 127, 127, 0.162);
 }
 .header-form {
   font-family: 'Roboto';
@@ -53,6 +52,7 @@ input:valid {border-color: green;}
 
 .text-danger {
   display: block;
+  color: rgba(238, 55, 55, 0.511);
 }
 
 .button{

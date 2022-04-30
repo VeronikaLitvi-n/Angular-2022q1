@@ -1,7 +1,7 @@
 <div class="register">
   <form
     [formGroup]="registerForm"
-    (submit)="registerForm.valid && submit()"
+    (submit)="submit()"
     class="form-registration">
     <h1 class="header-form">Registration</h1>
     <label class="label" for="firstName">First Name</label>
@@ -10,8 +10,10 @@
       id="firstName"
       placeholder="First Name"
       formControlName="firstName" />
-    <span class="text-danger" *ngIf="registerFormControl.firstName.pristine">
-      Please enter a first name
+    <span
+      class="text-danger"
+      *ngIf="registerFormControl.firstName.errors?.minlength">
+      Please enter a correct first name(min 3 char)
     </span>
     <label class="label" for="laststName">Last Name</label>
     <input
@@ -19,14 +21,13 @@
       id="lastName"
       placeholder="Last Name"
       formControlName="lastName" />
-    <span class="text-danger" *ngIf="registerFormControl.lastName.pristine">
-      Please enter a last name
+    <span
+      class="text-danger"
+      *ngIf="registerFormControl.lastName.errors?.minlength">
+      Please enter a correct last name(min 3 char)
     </span>
     <label class="label" for="email">Email</label>
     <input type="email" id="email" placeholder="Email" formControlName="mail" />
-    <span class="text-danger" *ngIf="registerFormControl.mail.errors?.required">
-      Please enter a email
-    </span>
     <span class="text-danger" *ngIf="registerFormControl.mail.errors?.email">
       Enter a valid email address
     </span>
@@ -38,11 +39,6 @@
       formControlName="password" />
     <span
       class="text-danger"
-      *ngIf="registerFormControl.password.errors?.required">
-      Please enter a password
-    </span>
-    <span
-      class="text-danger"
       *ngIf="registerFormControl.password.errors?.invalidPassword">
       Password should have minimum 8 characters, at least 1 uppercase letter, 1
       lowercase letter and 1 number and 1 special symbol
@@ -52,8 +48,8 @@
       [routerLink]="['/auth/login']"
       routerLinkActive="router-link-active"
       type="button"
-      class="button-form"
-      >Login</a
-    >
+      class="button-form">
+      Login
+    </a>
   </form>
 </div>

@@ -4,6 +4,7 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,10 +28,10 @@ export class RegistrationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      mail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator]],
+      firstName: [null, [Validators.required, Validators.minLength(3)]],
+      lastName: [null, [Validators.required, Validators.minLength(3)]],
+      mail: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, this.passwordValidator]],
     });
   }
 
@@ -38,7 +39,7 @@ export class RegistrationPageComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  public passwordValidator(control: AbstractControl) {
+  public passwordValidator(control: AbstractControl): ValidationErrors | null {
     if (!control.value) {
       return null;
     }
@@ -50,9 +51,11 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   public submit() {
-    this.formValue = this.registerForm.value;
-    localStorage.setItem('login', this.formValue.mail);
-    localStorage.setItem('password', this.formValue.password);
-    this.router.navigate(['auth/login']);
+    if (this.registerForm.valid) {
+      this.formValue = this.registerForm.value;
+      localStorage.setItem('login', this.formValue.mail);
+      localStorage.setItem('password', this.formValue.password);
+      this.router.navigate(['auth/login']);
+    }
   }
 }
