@@ -12,6 +12,11 @@
       formControlName="firstName" />
     <span
       class="text-danger"
+      *ngIf="registerFormControl.firstName.errors?.required">
+      Please enter a first name
+    </span>
+    <span
+      class="text-danger"
       *ngIf="registerFormControl.firstName.errors?.minlength">
       Please enter a correct first name(min 3 char)
     </span>
@@ -23,11 +28,19 @@
       formControlName="lastName" />
     <span
       class="text-danger"
+      *ngIf="registerFormControl.lastName.errors?.required">
+      Please enter a last name
+    </span>
+    <span
+      class="text-danger"
       *ngIf="registerFormControl.lastName.errors?.minlength">
       Please enter a correct last name(min 3 char)
     </span>
     <label class="label" for="email">Email</label>
     <input type="email" id="email" placeholder="Email" formControlName="mail" />
+    <span class="text-danger" *ngIf="registerFormControl.mail.errors?.required">
+      Please enter a mail address
+    </span>
     <span class="text-danger" *ngIf="registerFormControl.mail.errors?.email">
       Enter a valid email address
     </span>
@@ -37,6 +50,11 @@
       id="password"
       placeholder="Password"
       formControlName="password" />
+    <span
+      class="text-danger"
+      *ngIf="registerFormControl.password.errors?.required">
+      Please enter a password
+    </span>
     <span
       class="text-danger"
       *ngIf="registerFormControl.password.errors?.invalidPassword">

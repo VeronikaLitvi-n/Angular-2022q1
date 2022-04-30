@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import type { OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomValidator } from '../../models/password-validator';
 
 @Component({
   selector: 'app-registration-page',
@@ -31,23 +26,15 @@ export class RegistrationPageComponent implements OnInit {
       firstName: [null, [Validators.required, Validators.minLength(3)]],
       lastName: [null, [Validators.required, Validators.minLength(3)]],
       mail: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, this.passwordValidator]],
+      password: [
+        null,
+        [Validators.required, CustomValidator.passwordValidator],
+      ],
     });
   }
 
   get registerFormControl() {
     return this.registerForm.controls;
-  }
-
-  public passwordValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) {
-      return null;
-    }
-    const regex = new RegExp(
-      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\\!@#\\$%\\^\\[\\]]).{8,}$'
-    );
-    const valid = regex.test(control.value);
-    return valid ? null : { invalidPassword: true };
   }
 
   public submit() {

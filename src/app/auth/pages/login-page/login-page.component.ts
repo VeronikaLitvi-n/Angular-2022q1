@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import type { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CustomValidator } from '../../models/password-validator';
 
 @Component({
   selector: 'app-login-page',
@@ -31,23 +27,12 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       mail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator]],
+      password: ['', [Validators.required, CustomValidator.passwordValidator]],
     });
   }
 
   get loginFormControl() {
     return this.loginForm.controls;
-  }
-
-  public passwordValidator(control: AbstractControl) {
-    if (!control.value) {
-      return null;
-    }
-    const regex = new RegExp(
-      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\\!@#\\$%\\^\\[\\]]).{8,}$'
-    );
-    const valid = regex.test(control.value);
-    return valid ? null : { invalidPassword: true };
   }
 
   public submit() {
