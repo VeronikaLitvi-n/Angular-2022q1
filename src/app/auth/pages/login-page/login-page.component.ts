@@ -44,8 +44,9 @@ export class LoginPageComponent implements OnInit {
       this.loginFormValue.password === storagePassword
     ) {
       localStorage.setItem('logged', 'true');
-      this.authService.sendUserName(this.loginFormValue.mail);
-      this.authService.isUSerLogged();
+      localStorage.setItem('login', this.loginFormValue.mail);
+      this.authService.emitUserNameFromStorage();
+      this.authService.emitIsUserLogged();
       this.router.navigate(['home/video']);
     }
   }

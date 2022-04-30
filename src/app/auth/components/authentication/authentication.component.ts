@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { OnInit, OnDestroy } from '@angular/core';
+import type { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,10 +8,10 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss'],
 })
-export class AuthenticationComponent implements OnInit, OnDestroy {
+export class AuthenticationComponent implements OnInit {
   login = './assets/login.svg';
 
-  public userName: string = 'Your Name';
+  public userName: string | null = 'Your Name';
 
   public isLogged: boolean = false;
 
@@ -29,20 +29,20 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.userName$.subscribe(userName => {
+    this.authService.userName.subscribe(userName => {
+      console.log('comp' + userName);
       this.userName = userName;
     });
-    this.authService.isLogged.subscribe(val => (this.isLogged = val));
+    this.authService.isLogged.subscribe(val => {
+      console.log('comp' + val);
+      this.isLogged = val;
+    });
   }
 
   logout() {
     localStorage.clear();
-    this.userName = 'Your Name';
-    this.authService.isUSerLogged();
+    this.authService.emitIsUserLogged();
+    this.authService.emitUserNameFromStorage();
     this.router.navigate(['auth/login']);
-  }
-
-  ngOnDestroy(): void {
-    this.authService.userName$.unsubscribe();
   }
 }
