@@ -6,29 +6,42 @@
     <h1 class="header-form">Login</h1>
     <label class="label" for="email">Login(email)</label>
     <input type="email" id="email" placeholder="Email" formControlName="mail" />
-    <span class="text-danger" *ngIf="loginFormControl.mail.errors?.required">
-      Please enter a email
-    </span>
-    <span class="text-danger" *ngIf="loginFormControl.mail.errors?.email">
-      Enter a valid email address
-    </span>
+    <div
+      *ngIf="loginForm.get('mail')!.invalid && loginForm.get('mail')!.touched"
+      class="validation">
+      <small
+        class="requirement"
+        *ngIf="loginForm.get('mail')!.errors?.['required']">
+        Please enter a login</small
+      >
+      <small class="requirement" *ngIf="loginForm.get('mail')!.errors?.email">
+        The login is invalid
+      </small>
+    </div>
     <label class="label" for="password">Password</label>
     <input
       type="password"
       id="password"
       placeholder="Password"
       formControlName="password" />
-    <span
-      class="text-danger"
-      *ngIf="loginFormControl.password.errors?.required">
-      Please enter a password
-    </span>
-    <span
-      class="text-danger"
-      *ngIf="loginFormControl.password.errors?.invalidPassword">
-      Password should have minimum 8 characters, at least 1 uppercase letter, 1
-      lowercase letter and 1 number and 1 special symbol
-    </span>
+    <div
+      *ngIf="
+        loginForm.get('password')!.invalid && loginForm.get('password')!.touched
+      "
+      class="validation">
+      <small
+        class="requirement"
+        *ngIf="loginForm.get('password')!.errors?.['required']">
+        Please enter a password
+      </small>
+      <small
+        class="requirement"
+        *ngIf="loginForm.get('password')!.errors?.invalidPassword">
+        Password should have minimum 8 characters, at least 1 uppercase letter,
+        1 lowercase letter and 1 number and 1 special symbol
+      </small>
+    </div>
+
     <button type="submit" class="button">Login</button>
     <a
       [routerLink]="['/auth/registration']"

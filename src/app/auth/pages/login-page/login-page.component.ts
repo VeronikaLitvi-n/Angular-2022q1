@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import type { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { CustomValidator } from '../../models/password-validator';
+import { CustomValidator } from '../../utils/password-validator';
 
 @Component({
   selector: 'app-login-page',

@@ -11,6 +11,7 @@ import { FiltersComponent } from './core/components/header/filters/filters.compo
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminPageComponent } from './core/pages/admin-page/admin-page.component';
 import { YoutubeInterceptor } from './core/interceptors/youtube.interceptor';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { YoutubeInterceptor } from './core/interceptors/youtube.interceptor';
     FiltersComponent,
     SearchInputComponent,
     AdminPageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,

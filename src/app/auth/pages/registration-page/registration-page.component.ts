@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import type { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomValidator } from '../../models/password-validator';
+import { CustomValidator } from '../../utils/password-validator';
 
 @Component({
   selector: 'app-registration-page',

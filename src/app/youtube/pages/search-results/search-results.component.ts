@@ -6,7 +6,6 @@ import {
   takeUntil,
   debounceTime,
   distinctUntilChanged,
-  filter,
   Subscription,
   switchMap,
 } from 'rxjs';
@@ -55,7 +54,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.notifier),
         debounceTime(1000),
-        filter(v => v.length >= 3 || v.length === 0),
         distinctUntilChanged(),
         switchMap(title => this.youtubeService.getVideos(title))
       )

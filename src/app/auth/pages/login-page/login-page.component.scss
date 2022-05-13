@@ -23,8 +23,18 @@
   text-align: left;
   margin-left: 14%;
 }
-input.ng-touched.ng-invalid {
-  border: 2px solid red;
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  &.ng-valid.ng-touched {
+    border: 1px solid green;
+  }
+}
+
+.requirement {
+  color: rgb(236, 34, 34) ;
 }
 
 form.ng-touched.ng-invalid {

@@ -18,7 +18,11 @@ export class SearchInputComponent {
   constructor(private readonly viewOptionService: ViewOptionService) {}
 
   public searchVideo() {
-    this.viewOptionService.changeTitleSearch(this.inputSearch);
+    if (this.inputSearch.length >= 3) {
+      this.viewOptionService.changeTitleSearch(this.inputSearch);
+    } else {
+      return;
+    }
   }
 
   public toggleSettings() {
