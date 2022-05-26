@@ -1,0 +1,70 @@
+<div class="admin">
+  <form
+    [formGroup]="adminForm"
+    (submit)="adminForm.valid && submit()"
+    class="form-admin">
+    <h1 class="header-form">Create new card</h1>
+    <label class="label" for="title">Title</label>
+    <input type="text" id="title" formControlName="title" />
+    <span class="text-danger" *ngIf="adminFormControl.title.errors?.required">
+      Please enter a title
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.title.errors?.['minlength']">
+      The title is too short
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.title.errors?.['maxlength']">
+      The title is too long
+    </span>
+    <label class="label" for="description">Description</label>
+    <input type="text" id="description" formControlName="description" />
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.description.errors?.required">
+      Please enter a description
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.description.errors?.['maxlength']">
+      The description is too long
+    </span>
+    <label class="label" for="img">Img</label>
+    <input type="text" id="img" formControlName="img" />
+    <span class="text-danger" *ngIf="adminFormControl.img.errors?.required">
+      Please enter a link to the image
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.linkVideo.errors?.pattern">
+      The image link is invalid
+    </span>
+    <label class="label" for="linkVideo">Link Video</label>
+    <input type="text" id="linkVideo" formControlName="linkVideo" />
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.linkVideo.errors?.required">
+      Please enter a link to the video
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.linkVideo.errors?.pattern">
+      The video link is invalid
+    </span>
+    <label class="label" for="creationDate">Creation Date</label>
+    <input type="date" id="creationDate" formControlName="creationDate" />
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.creationDate.errors?.required">
+      Please enter a creation date
+    </span>
+    <span
+      class="text-danger"
+      *ngIf="adminFormControl.creationDate.errors?.LessThanToday">
+      The date is invalid
+    </span>
+    <button type="submit" class="button">Create</button>
+  </form>
+</div>
